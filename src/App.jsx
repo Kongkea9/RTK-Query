@@ -13,6 +13,13 @@ import { Link } from "react-router";
 //   return (
 //     <>
 //        <main className="max-w-screen-xl mx-auto">
+
+//             <Link
+//         className="flex h-[40px] w-[150px] mb-3 px-5 items-center gap-2 text-white rounded-md py-4 bg-emerald-500 transition-colors duration-300 hover:bg-emerald-600 focus:text-emerald-600 focus:outline-none focus-visible:outline-none"
+//         to="/createProduct"
+//       >
+//         <span>Create Product</span>
+//       </Link>
 //         <section className="grid grid-cols-4 gap-5">
 //           {isLoading &&
 //             array.map((index) => <SkeletonCardProduct key={index} />)}
@@ -42,11 +49,10 @@ import DataTable from "react-data-table-component";
 function App() {
   const { data, isLoading } = useGetProductsQuery();
   const columns = [
-     {
-      name:"No",
-      cell:(row, index) => index +1,
+    {
+      name: "No",
+      cell: (row, index) => index + 1,
       width: "60px",
-
     },
     {
       name: "Thumbnail",
