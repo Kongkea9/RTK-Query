@@ -228,7 +228,7 @@ export default function updateProduct() {
             type="submit"
             className="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2 rounded-lg text-sm transition"
           >
-            update Product
+            Update Product
           </button>
         </form>
       </div>
