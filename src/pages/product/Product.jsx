@@ -3,56 +3,103 @@
 
 // import { Link } from "react-router";
 // import SkeletonCardProduct from "../../components/card/skeleton-card-product";
-// // export default function Product() {
-// //   const { data, isLoading, isError } = useGetProductsQuery();
-// //   const skeletonCount = 8;
+// import DataTable from "react-data-table-component";
+// import { useGetProductsQuery } from "../../features/product/productSlice";
+// import { isPending } from "@reduxjs/toolkit";
+// export default function Product() {
+//   const { data, isLoading, isError } = useGetProductsQuery();
+//   const skeletonCount = 8;
 
-// //   return (
-// //     <main className="max-w-screen-xl mx-auto">
-// //       <Link
-// //         className="flex h-[40px] w-[150px] mb-3 px-5 items-center gap-2 text-white rounded-md py-4 bg-emerald-500 transition-colors duration-300 hover:bg-emerald-600 focus:text-emerald-600 focus:outline-none focus-visible:outline-none"
-// //         to="/createProduct"
-// //       >
-// //         <span>Create Product</span>
-// //       </Link>
+//   return (
+//     <main className="max-w-screen-xl mx-auto">
+//       <Link
+//         className="flex h-[40px] w-[150px] mb-3 px-5 items-center gap-2 text-white rounded-md py-4 bg-emerald-500 transition-colors duration-300 hover:bg-emerald-600 focus:text-emerald-600 focus:outline-none focus-visible:outline-none"
+//         to="/createProduct"
+//       >
+//         <span>Create Product</span>
+//       </Link>
 
-// //         <section className="grid grid-cols-4 gap-5">
-// //           {isLoading &&
-// //             Array.from({ length: skeletonCount }).map((_, index) => (
-// //               <SkeletonCardProduct key={index} />
-// //             ))}
+//         <section className="grid grid-cols-4 gap-5">
+//           {isLoading &&
+//             Array.from({ length: skeletonCount }).map((_, index) => (
+//               <SkeletonCardProduct key={index} />
+//             ))}
 
-// //           {!isLoading &&
-// //             data?.map((p) => (
-// //               <CardProduct
-// //                 key={p.id}
-// //                 thumbnail={
-// //                   p.images && p.images.length > 0
-// //                     ? p.images[0]
-// //                     : "fallback-image-url-or-placeholder.jpg"
-// //                 }
-// //                 title={p.title}
-// //                 id={p.id}
-// //               />
-// //             ))}
-// //         </section>
-// //     </main>
-// //   );
-// // }
+//           {!isLoading &&
+//             data?.map((p) => (
+//               <CardProduct
+//                 key={p.id}
+//                 thumbnail={
+//                   p.images && p.images.length > 0
+//                     ? p.images[0]
+//                     : "fallback-image-url-or-placeholder.jpg"
+//                 }
+//                 title={p.title}
+//                 id={p.id}
+//               />
+//             ))}
+//         </section>
+//     </main>
+//   );
+// }
 
-// export default function Product()  {
+// export default function Product() {
 //   const { data, isLoading } = useGetProductsQuery();
-//  const array = [1, 2, 3, 4, 5, 6, 7, 8];
+//   const array = [1, 2, 3, 4, 5, 6, 7, 8];
+
+//   //define columns in data table
+
+//   const columns = [
+//     {
+//       name: "Thumbnail",
+//       selector: (row) =>
+//         row?.thumbnail ? (
+//           <img
+//             src={row.thumbnail}
+//             alt={row.name}
+//             className="w-12 h-12 object-cover rounded"
+//           />
+//         ) : (
+//           "No Image"
+//         ),
+//     },
+//     {
+//       name: "Prodcut Name",
+//       selector: (row) => row.name,
+//     },
+//     {
+//       name: "Price Out",
+//       selector: (row) => row.priceIn,
+//     },
+//     {
+//       name: "Stock Quantity",
+//       selector: (row) => row.stockQuantity,
+//     },
+//     {
+//       name: "Supplier",
+//       selector: (row) => row.supplier.name,
+//     },
+//   ];
 
 //   console.log("data from RTK Query", data);
 
 //   return (
 //     <>
-//        <main className="max-w-screen-xl mx-auto">
+//       <main className="max-w-screen-xl mx-auto">
 //         <section className="grid grid-cols-4 gap-5">
-//           {isLoading &&
+//           <DataTable 
+//           columns={columns}
+//           data = {data?.content}
+//           pagination
+//           progressPending = {isPending}
+//           />
+
+
+ 
+
+//           {/* {isLoading &&
 //             array.map((index) => <SkeletonCardProduct key={index} />)}
-//           {/* product section */}
+         
 //           {!isLoading &&
 //             data?.content.map((p, index) => (
 //               <CardProduct
@@ -61,12 +108,20 @@
 //                 title={p.name}
 //                 id={p.uuid}
 //               />
-//             ))}
+//             ))} */}
 //         </section>
 //       </main>
 //     </>
 //   );
 // }
+
+
+
+
+
+
+
+
 
 import { useGetProductsQuery } from "../../features/product/productSlice";
 import { Link } from "react-router";

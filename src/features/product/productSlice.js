@@ -8,12 +8,14 @@ const productApi = apiSlice.injectEndpoints({
         url: "/products",
         method: "GET",
       }),
+      providesTags: ["product"],
     }),
     getProductById: build.query({
       query: (id) => ({
         url: `/products/${id}`,
         method: "GET",
       }),
+      providesTags: ["product"],
     }),
 
     createProduct: build.mutation({
@@ -22,6 +24,7 @@ const productApi = apiSlice.injectEndpoints({
         method: "POST",
         body: createProduct,
       }),
+      invalidatesTags: ["product"],
     }),
 
     updateProduct: build.mutation({
@@ -30,14 +33,16 @@ const productApi = apiSlice.injectEndpoints({
         method: "PUT",
         body: updatedProduct,
       }),
+      invalidatesTags: ["product"],
     }),
 
-    deleteProduct:build.mutation({
-      query:(uuid)=>({
-        url:`/products/${uuid}`,
+    deleteProduct: build.mutation({
+      query: (uuid) => ({
+        url: `/products/${uuid}`,
         method: "DELETE",
-      })
-    })
+      }),
+      invalidatesTags: ["product"],
+    }),
   }),
 });
 
